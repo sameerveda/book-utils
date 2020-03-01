@@ -1,0 +1,40 @@
+plugins {
+    id 'jacoco'
+    id 'java'
+    id 'application'
+}
+
+apply from: '../base.gradle'
+
+ext.appdir0 = 'booklist_update/bin'
+apply from: '../tasks.gradle'
+
+repositories {
+    jcenter()
+}
+
+version = '.07'
+mainClassName = 'Main'
+
+run {
+  environment 'SELF_DIR', appdir.parent
+  environment 'config_file', appdir.parent + "\\.config.properties"
+}
+
+dependencies {
+  [MY_UTILS, JSOUP, ARG4J, ORG_JSON, SLF_SIMPLE, SQLITE].each {
+    implementation(it)
+  }
+}
+
+test {
+  useJUnitPlatform()
+  systemProperty 'java.util.logging.config.file','test-logging.properties'
+}
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacoco.html")
+    }
+}

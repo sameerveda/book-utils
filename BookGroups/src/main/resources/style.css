@@ -1,0 +1,113 @@
+.root {
+	-fx-common-background: derive(black, 10%);
+	-fx-font-family: "Consolas";
+}
+#root-2 {
+	-fx-background-color:-fx-common-background;
+}
+.menu-bar {
+	-fx-background-color:black;
+	
+}
+.menu .label{
+	-fx-text-fill:white;
+}
+.menu-item .label {
+	-fx-text-fill:black;
+}
+#bottom {
+	-fx-background-color:black;
+	-fx-padding:4;
+	-fx-alignment: center-left;
+}
+
+#bottom .label {
+	-fx-text-fill:white;
+}
+.bookentry {
+	-fx-background-size:contain;
+	-fx-border-width: 0.5;
+	-fx-border-color:rgba(255,255,255,0.3);
+}
+ .bookentry:hover{
+	-fx-effect:dropshadow(gaussian, rgba(0,255,255,0.4), 5,0,3,3);
+}
+.bookentry:selected{
+	-fx-effect:dropshadow(gaussian, rgba(0,255,127,0.5), 3,0,3,3);
+}
+.bookentry .center-label {
+	-fx-text-fill:white;
+}
+.unit-group .title{
+	-fx-text-fill:white;
+	-fx-padding:10 0 0 10;
+	-fx-border-width:0.2 0 0 0;
+	-fx-border-color:white;
+}
+.unit-group .children {
+ -fx-padding: 10;
+ -fx-hgap: 2em;
+ -fx-vgap: 2em;
+}
+#book-entry-view-container {
+	-fx-padding:0 0 50 0;
+}
+#book-entry-view-container-scroll-pane {
+	-fx-background-color:-fx-common-background;
+}
+#book-entry-view-container-scroll-pane .viewport, #book-entry-view-container-scroll-pane * {
+	-fx-background-color:-fx-common-background;
+}
+#book-entry-view-container-scroll-pane .scroll-bar {
+	-fx-border-width:0.3;
+	-fx-border-color:white;
+}
+#book-entry-view-container-scroll-pane .scroll-bar .thumb {
+	-fx-border-width:0.3;
+	-fx-border-color:white;
+	-fx-background-color: derive(-fx-common-background, 50%);
+}
+#book-entry-view-container-scroll-pane .scroll-bar .thumb:hover {
+	-fx-background-color: derive(-fx-common-background, 70%);
+}
+
+#title-group-container {
+	-fx-padding:10px;
+	-fx-border-width: 0 0 0.1 0;
+	-fx-border-color: derive(-fx-common-background, 50%);
+	
+}
+#title-group-container .title {
+	-fx-fill:white;
+	-fx-font-style: italic ;
+	-fx-font-size:2em;
+}
+#title-group-container .combo-box {
+	-fx-background-color: -fx-common-background;
+	-fx-border-color:derive(-fx-common-background, 20%);
+}
+#title-group-container .combo-box .list-cell {
+	-fx-text-fill: white;
+	-fx-background-color: -fx-common-background;
+}
+
+#book-entry-view-controls, #book-entry-view-controls * {
+	-fx-background-color:transparent;
+}
+#book-entry-view-controls .right {
+	-fx-background-color:rgba(0, 0, 0, 0.5);
+	-fx-border-width:0.0 0 0 0.2;
+	-fx-border-color:white;
+	-fx-padding:3;
+}
+#book-entry-view-controls .about {
+	-fx-text-fill:white;
+	-fx-font-size:0.8em;
+	-fx-padding:10px;
+	-fx-background-color:rgba(0,0,0,0.3);
+	-fx-font-weight:bold;
+}
+
+.tooltip * {
+	-fx-text-fill:white;
+}

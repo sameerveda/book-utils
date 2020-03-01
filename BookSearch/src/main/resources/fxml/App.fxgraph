@@ -1,0 +1,104 @@
+package fxml
+
+import sam.book.search.RecentsBookTab
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.HBox
+import javafx.geometry.Insets
+import javafx.scene.text.Text
+import javafx.scene.control.TextField
+import java.lang.Double
+import javafx.scene.control.ListView
+import javafx.scene.layout.VBox
+import javafx.scene.control.Label
+import javafx.scene.web.WebView
+import javafx.scene.control.Hyperlink
+import javafx.stage.Stage
+import javafx.scene.Scene
+import javafx.scene.control.Button
+import javafx.scene.layout.Pane
+import javafx.scene.control.TabPane
+import javafx.scene.control.Tab
+import sam.book.search.SmallBookTab
+import javafx.scene.control.ChoiceBox
+import javafx.scene.control.SplitPane
+import javafx.scene.control.SplitPane.Divider
+import javafx.scene.layout.GridPane
+import javafx.scene.control.MenuBar
+import javafx.scene.control.Menu
+import javafx.scene.control.MenuItem
+import javafx.scene.layout.ColumnConstraints
+import sam.book.search.SqlFilterMenu
+import sam.book.search.ChoiceBox2
+import sam.book.search.Status2
+import sam.book.search.Sorter
+import sam.book.search.DirFilter
+import javafx.scene.control.Tooltip
+import sam.book.search.MainTab
+import sam.book.search.RecentsBookTab
+import sam.fx.helpers.IconButton
+import sam.book.search.FiltersMenu
+
+dynamic component Main  {
+	
+	Stage {
+		title : "Book Search",
+		scene : Scene id mainScene {
+			SplitPane id mainRoot {
+				BorderPane {
+					top: BorderPane {
+						top: MenuBar {
+							Menu {
+								text : "File",								
+								MenuItem {text : "Save As html", onAction : controllermethod saveAsHtml},
+								MenuItem {text : "Save Filter", onAction : controllermethod saveFilter},
+								MenuItem { text: "copy combined", onAction : controllermethod copyCombinedAction },
+								MenuItem { text: "open file", onAction : controllermethod openFileAction }
+							},
+							Menu {
+								text : "Resource",								
+								MenuItem {text : "Reload Resources", onAction : controllermethod reloadResoueces}
+							},
+							FiltersMenu id filtersMenu {text : "filters"}
+						},
+						center : HBox {
+							spacing : 10,
+							padding : Insets { top : 5, bottom : 5, left : 5, right : 5 },
+							alignment : "CENTER_LEFT",
+							Text id searchLabel { text : "Search" },
+							TextField id searchField { maxWidth : const Double#MAX_VALUE, static hgrow : "ALWAYS" },
+							IconButton id dirFilter {
+								icon : location "../dirFilter.png", 
+								fitWidth : 20, 
+								preserveRatio : true,
+								tooltip : Tooltip {text : "Dir Filter"},
+								onAction : controllermethod dirFilterAction 
+							}
+					   }
+					},
+					center : TabPane id tabpane {
+						MainTab id allTab { text : "All"},
+						RecentsBookTab id recentTab { text : "Recent"},
+						side : "BOTTOM"
+					},
+					bottom : HBox id bottom {
+						spacing : 5,
+						padding : Insets { top : 5, bottom : 5, left : 5, right : 5 },
+						alignment : "CENTER",
+						ChoiceBox2<Status2> id statusChoice {title: "Status"},
+						ChoiceBox2<Sorter> id sortChoice {title: "Sort By"},
+						Button {text : "Group By", style:"-fx-font-size:0.7em;-fx-font-family:monospace;", onAction : controllermethod groupByAction },
+						Pane { static hgrow : "ALWAYS", maxWidth : const Double#MAX_VALUE },
+						VBox {
+							HBox {
+							  spacing : 5,
+							  Text id countText {styleClass : ["smalltext"]},
+						      Text id loadText {styleClass : ["smalltext"]}
+							},
+						    Button {text : "FullView", style:"-fx-font-size:0.7em;-fx-font-family:monospace;", onAction : controllermethod fullViewAction }
+						}
+					}
+				}
+			}
+		}
+	}
+}

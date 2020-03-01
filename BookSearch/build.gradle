@@ -1,0 +1,54 @@
+plugins {
+    id 'jacoco'
+    id 'java'
+    id 'application'
+}
+apply from: '../base.gradle'
+
+ext.appdir0 = 'booksearch/app'
+apply from: '../tasks.gradle'
+
+repositories {
+    jcenter()
+}
+
+
+dependencies {
+  [MY_UTILS, SQLITE, SLF_SIMPLE, ORG_JSON].each {
+    implementation(it)
+  }
+  [LOREM, JUNIT_API, JUNIT_ENGINE].each {
+    testImplementation(it)
+  }  
+}
+
+mainClassName = 'Main'
+version = '1.08'
+
+run {
+  environment['BOOKLIST_ROOT'] = rootDir
+  workingDir appdir.parent  
+}
+
+
+jar {
+  exclude 'fxml/*.fxgraph'
+}
+run {
+  workingDir appdir.parent
+}
+
+defaultTasks 'install'
+
+test {
+  useJUnitPlatform()
+  systemProperty 'java.util.logging.config.file','test-logging.properties'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacoco.html")
+    }
+}

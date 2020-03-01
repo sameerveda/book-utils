@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+Objects.requireNonNull(System.env.GRADLE_ASSETS, "System.env.GRADLE_ASSETS not found")
+apply from: "${System.env.GRADLE_ASSETS}/deps_n_ext.gradle"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation(SQLITE_XERIAL, SLF4J_SIMPLE, JPA_API, HPPC)
+implementation 'org.jdbi:jdbi3-core:3.12.0'
+
+    
+}

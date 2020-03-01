@@ -1,0 +1,31 @@
+.root {
+	-fx-font-family: "Consolas";
+	-fx-background-size:contain;
+	-fx-background-color: #1B1B1B;
+	
+}
+
+.details{
+	-fx-padding:1em;
+	-fx-font-size:1.2em;
+}
+.value {
+	-fx-fill:white;
+	-fx-text-fill:white;
+}
+.header {
+	-fx-fill:derive(white, -30%);
+}
+
+.path {
+	-fx-padding: 0 0 0 10;
+}
+.thumb {
+	-fx-background-size:contain;
+}
+html {
+	font-size:0.7em;
+	font-family: "Consolas";
+	background-color: #1B1B1B;
+	color:white;
+}

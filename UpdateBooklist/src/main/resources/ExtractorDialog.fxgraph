@@ -1,0 +1,96 @@
+package fxml
+
+import javafx.scene.Scene
+import javafx.stage.Stage
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.HBox
+import javafx.scene.text.Text
+import javafx.scene.control.Button
+import javafx.scene.layout.GridPane
+import javafx.scene.layout.VBox
+import javafx.scene.layout.StackPane
+import javafx.scene.control.TextField
+import javafx.scene.control.Label
+import javafx.scene.control.TextArea
+import javafx.geometry.Insets
+import javafx.scene.control.CheckBox
+import javafx.scene.control.Tooltip
+import javafx.scene.layout.TilePane
+import javafx.scene.layout.Pane
+
+dynamic component AboutBookExtractorDialog {
+	Stage {
+		scene : Scene {
+			StackPane id stack {
+			VBox id root {
+				fillWidth : true,
+				spacing : 5,
+				HBox id top {
+					alignment : "CENTER",
+					spacing : 5,
+					Text id path_id,
+					Label id subpath {wrapText : true, maxWidth : const Double#MAX_VALUE, static hgrow : "ALWAYS"},
+					Button  {text : "open", onAction : controllermethod openAction},
+					Button  {text : "open location", onAction : controllermethod openLocationAction}
+				},
+				GridPane id grid {
+					    hgap : 5,
+				        vgap : 5,
+						Text id fileNameT {static columnIndex : 0, static rowIndex : 0,  static columnSpan : const GridPane#REMAINING},
+						
+						Text {text : "Name",static columnIndex : 0, static rowIndex : 1},
+						TextField id nameTF {static rowIndex : 1,static columnIndex : 1,  static columnSpan : const GridPane#REMAINING},
+						
+						Text {text : "Author",static columnIndex : 0, static rowIndex : 2},
+						TextField id authorTF {static rowIndex : 2,static columnIndex : 1,  static columnSpan : const GridPane#REMAINING},
+						
+						Text {text : "ISBN",static columnIndex : 0, static rowIndex : 3},
+						TextField id isbnTF {static columnIndex : 1, static rowIndex : 3,  static columnSpan : const GridPane#REMAINING},
+						
+						Text {text : "Page Count",static columnIndex : 0, static rowIndex : 4},
+						TextField id pageCountTF {static rowIndex : 4,static columnIndex : 1},
+						
+						Text {text : "Year", static rowIndex : 4,static columnIndex : 2},
+						TextField id yearTF {static rowIndex : 4,static columnIndex : 3},
+						
+						Text {text : "Url", static rowIndex : 5,static columnIndex : 0},
+						TextField id urlTF {static rowIndex : 5,static columnIndex : 1,  static columnSpan : const GridPane#REMAINING}
+				},
+				HBox {
+					alignment : "CENTER_RIGHT",
+					Button id descriptionBtn {text : "description", onAction : controllermethod showDescription}
+				},
+				HBox {
+					alignment : "CENTER",
+					spacing : 5,
+					Text {text : "extract"},
+					TextField id extractTF {onAction : controllermethod urlGoAction, static hgrow : "ALWAYS", maxWidth : const Double#MAX_VALUE},
+					Button id goBtn {text : "GO", onAction : controllermethod urlGoAction}
+				},
+				BorderPane {
+					padding : Insets {topRightBottomLeft: 10},
+					left: Button id prevBtn {text : "PREVIOUS", onAction : controllermethod prevAction},
+					center: Text id countT,
+					right: Button id nextBtn {text : "NEXT", onAction : controllermethod nextAction}
+				},
+				HBox {
+					alignment : "CENTER_RIGHT",
+					Button id urlsBtn {text : "urls", onAction : controllermethod showHideExtractorAction}
+				},
+				BorderPane id extractor {
+					top: Text {text : "URLS"},
+					center: TextArea id urlsTA,
+					bottom: HBox {
+						padding : Insets {topRightBottomLeft: 5},
+						spacing : 5,
+						alignment : "CENTER",
+						CheckBox id autoloadCB {text : "autoload", tooltip : Tooltip {text : "autoload after extract"}}, 
+						Label id extractor_error { maxWidth : const Double#MAX_VALUE, static hgrow : "ALWAYS"},
+						Button id extractBtn { text : "find url",  onAction : controllermethod extractUrlAction}
+					}
+				}
+			}
+			}
+		}
+	}
+}

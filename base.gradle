@@ -1,0 +1,27 @@
+ext {
+  rootAppDir = 'H:/ProgrammingComputer Books/non-book materials/Booklist app/'
+  
+  ext.JUNIT_VERSION = '5.3.2'
+
+  SQLITE = 'org.xerial:sqlite-jdbc:3.7.2'
+  MY_UTILS = files('myutils.jar')    
+  SLF_API = 'org.slf4j:slf4j-api:1.8.0-beta4'
+  SLF_SIMPLE = 'org.slf4j:slf4j-simple:1.8.0-beta4'
+  OK_HTTP = 'com.squareup.okhttp3:okhttp:3.12.1'
+  JSOUP = 'org.jsoup:jsoup:1.11.3'
+  ORG_JSON = 'org.json:json:20180130'
+  FEATHER = 'org.codejargon.feather:feather:1.0'
+  LOREM = 'com.thedeanda:lorem:2.1'
+  ARG4J = 'args4j:args4j:2.33'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8 
+targetCompatibility = JavaVersion.VERSION_1_8
+
+[
+'junit-jupiter-api',
+'junit-jupiter-params',
+'junit-jupiter-engine'
+].each {
+  ext['JUNIT_' + (it - 'junit-jupiter-').toUpperCase()] = "org.junit.jupiter:${it}:${JUNIT_VERSION}" 
+}
