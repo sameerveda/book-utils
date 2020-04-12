@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+ext.JUNIT_VERSION = '5.3.2'
+
+dependencies {
+  compileOnly 'org.json:json:20180813'
+  
+  testImplementation 'org.json:json:20180813'
+  testImplementation 'org.junit.jupiter:junit-jupiter-engine:'+JUNIT_VERSION
+}
+
+test {
+  useJUnitPlatform()
+}

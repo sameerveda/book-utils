@@ -1,0 +1,3 @@
+include ':books-model'
+project(':books-model').projectDir = file('../books-model')
+rootProject.name = 'book-search'

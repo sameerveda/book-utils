@@ -1,0 +1,32 @@
+plugins {
+    id 'jacoco'
+    id 'java'
+    id 'application'
+}
+apply from: '../base.gradle'
+
+ext.appdir0 = 'booksearch/app'
+apply from: '../tasks.gradle'
+
+repositories {
+    jcenter()
+}
+
+mainClassName = 'Main'
+ 
+
+dependencies {
+ implementation (
+ 'com.carrotsearch:hppc:0.8.1',
+ 'org.json:json:20180813',
+ 'com.almworks.sqlite4java:sqlite4java:1.0.392',
+ 'com.almworks.sqlite4java:sqlite4java-win32-x64:1.0.392',
+ 'org.slf4j:slf4j-simple:2.0.0-alpha1',
+ project(':books-model'),
+  files('myutils.jar'),
+ )
+}
+
+run {
+  systemProperties['java.library.path'] = './lib'
+}

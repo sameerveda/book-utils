@@ -1,0 +1,88 @@
+package fxml
+
+import javafx.scene.layout.BorderPane
+import javafx.scene.layout.HBox
+import javafx.geometry.Insets
+import javafx.scene.text.Text
+import javafx.scene.control.TextField
+import java.lang.Double
+import javafx.scene.control.ListView
+import javafx.scene.layout.VBox
+import javafx.scene.control.Label
+import javafx.scene.web.WebView
+import javafx.scene.control.Hyperlink
+import javafx.stage.Stage
+import javafx.scene.Scene
+import javafx.scene.control.Button
+import javafx.scene.layout.Pane
+import javafx.scene.control.TabPane
+import javafx.scene.control.Tab
+import javafx.scene.control.ChoiceBox
+import javafx.scene.control.SplitPane
+import javafx.scene.control.SplitPane.Divider
+import javafx.scene.layout.GridPane
+import javafx.scene.control.MenuBar
+import javafx.scene.control.Menu
+import javafx.scene.control.MenuItem
+import javafx.scene.layout.ColumnConstraints
+import javafx.scene.control.Tooltip
+import sam.fx.helpers.IconButton
+import sam.book.search.app.App
+import sam.book.search.app.Choices
+import sam.fx.components.LazyListView
+import java.lang.Integer
+
+dynamic component Main  {
+	
+	Stage {
+		title : "Book Search",
+		scene : Scene id mainScene {
+			SplitPane id mainRoot {
+				BorderPane {
+					top: BorderPane {
+						top: MenuBar {
+							Menu {
+								text : "File",								
+								MenuItem {text : "Save As html", onAction : controllermethod saveAsHtml},
+								MenuItem {text : "Save Filter", onAction : controllermethod saveFilter},
+								MenuItem { text: "copy combined", onAction : controllermethod copyCombinedAction },
+								MenuItem { text: "open file", onAction : controllermethod openFileAction }
+							},
+							Menu {
+								text : "Resource",								
+								MenuItem {text : "Reload Resources", onAction : controllermethod reloadResoueces}
+							}
+						},
+						center : HBox {
+							spacing : 10,
+							padding : Insets { top : 5, bottom : 5, left : 5, right : 5 },
+							alignment : "CENTER_LEFT",
+							Text id searchLabel { text : "Search" },
+							TextField id searchField { maxWidth : const Double#MAX_VALUE, static hgrow : "ALWAYS", onAction : controllermethod update },
+							IconButton id dirFilter {
+								icon : location "../dirFilter.png", 
+								fitWidth : 20, 
+								preserveRatio : true,
+								tooltip : Tooltip {text : "Dir Filter"},
+								onAction : controllermethod dirFilterAction 
+							}
+					   }
+					},
+					center : LazyListView id booklist,
+					bottom : GridPane {
+						padding : Insets { top : 5, bottom : 5, left : 5, right : 5 },
+						hgap : 5,
+						Text {text: "Type", static rowIndex : 0, static columnIndex : 0, static halignment : "CENTER"},
+						Text {text: "Status", static rowIndex : 0, static columnIndex : 1, static halignment : "CENTER"},
+						Text {text: "Sort By", static rowIndex : 0, static columnIndex : 2, static halignment : "CENTER"},
+						Text {text: "Count", static rowIndex : 0, static columnIndex : 3, static halignment : "CENTER"},
+						Hyperlink id typeChoice {userData: const Choices#TYPE, static rowIndex : 1, static columnIndex : 0, onAction : controllermethod updateState, static halignment : "CENTER"},
+						Hyperlink id statusChoice {userData: const Choices#STATUS, static rowIndex : 1, static columnIndex : 1, onAction : controllermethod updateState, static halignment : "CENTER"},
+						Hyperlink id sortByChoice {userData: const Choices#SORT_BY, static rowIndex : 1, static columnIndex : 2, onAction : controllermethod updateState, static halignment : "CENTER"},
+						Text id countText {static rowIndex : 1, static columnIndex : 3, static halignment : "CENTER"}
+					}
+				}
+			}
+		}
+	}
+}
